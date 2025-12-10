@@ -1,0 +1,12 @@
+[project]
+name = "cloudflare-error-page-real"
+version = "0.1.0"
+description = "Create a Cloudflare error page with real-time edge location data."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.124.0",
+    "jinja2>=3.1.6",
+    "loguru>=0.7.3",
+    "uvicorn>=0.38.0",
+]
