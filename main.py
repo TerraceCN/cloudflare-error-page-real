@@ -43,7 +43,7 @@ else:
 
 def get_region(code: str):
     city: str = iata_codes.get(code.upper(), "Unknown, Unknown")
-    region, _ = city.split(",", 2)
+    region = city.split(",", 2)[0]
     return region.strip()
 
 
