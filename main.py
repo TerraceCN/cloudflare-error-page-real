@@ -66,12 +66,20 @@ def index(request: Request, full_path: str = Path(...)):
         cf_ray = f"{secrets.token_hex(8)}-UNK"
     ray_id, code = cf_ray.split("-", 1)
 
+    host = request.headers.get("Host")
+
     params = deepcopy(config)
+
     if "cloudflare_status" in params and isinstance(params["cloudflare_status"], dict):
         params["cloudflare_status"]["location"] = get_region(code)
     else:
         params["cloudflare_status"] = {"location": get_region(code)}
-    
+
+    if "host_status" in params and isinstance(params["host_status"], dict):
+        params["host_status"]["location"] = host
+    else:
+        params["host_status"] = {"location": host}
+
     params["ray_id"] = ray_id
     params["client_ip"] = client_ip
 
